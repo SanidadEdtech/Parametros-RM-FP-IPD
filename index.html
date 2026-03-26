@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Técnicas de Imagen por Resonancia Magnética – Tabla de Parámetros</title>
+    <meta name="description"
+        content="Guía técnica interactiva de parámetros de imagen por resonancia magnética. Tabla didáctica con filtrado por categoría y detalles expandibles.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #050d1a;
+            --bg-card: #0a1628;
+            --bg-row: #0c1a30;
+            --bg-row-alt: #091322;
+            --bg-cat: #0d1f3a;
+            --cyan: #00c8ff;
+            --violet: #7b5ea7;
+            --mint: #00ffc6;
+            --yellow: #ffd966;
+            --coral: #ff6b6b;
+            --orange: #ffaa44;
+            --text: #d6e4f0;
+            --text-dim: #6b8299;
+            --border: rgba(0, 200, 255, 0.08);
+            --glow-cyan: 0 0 20px rgba(0, 200, 255, 0.25);
+            --glow-violet: 0 0 20px rgba(123, 94, 167, 0.30);
+            --radius: 12px;
+            --grid-size: 48px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════════════════════════════
+   ANIMATED GRID BACKGROUND
+   ═══════════════════════════════════════════ */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(0, 200, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 200, 255, 0.04) 1px, transparent 1px);
+            background-size: var(--grid-size) var(--grid-size);
+            animation: gridDrift 25s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes gridDrift {
+            0% {
+                background-position: 0 0, 0 0;
+            }
+
+            100% {
+                background-position: var(--grid-size) var(--grid-size), var(--grid-size) var(--grid-size);
+            }
+        }
+
+        /* ═══════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════ */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(32px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up {
+            animation: fadeUp .7s cubic-bezier(.22, 1, .36, 1) both;
+        }
+
+        .fade-up-d1 {
+            animation-delay: .1s;
+        }
+
+        .fade-up-d2 {
+            animation-delay: .25s;
+        }
+
+        .fade-up-d3 {
+            animation-delay: .4s;
+        }
+
+        /* ═══════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════ */
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 48px 24px 32px;
+        }
+
+        /* ═══════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════ */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .eyebrow {
+            font-family: 'DM Mono', monospace;
+            font-size: .78rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 14px;
+            display: inline-block;
+            padding: 4px 16px;
+            border: 1px solid rgba(0, 200, 255, 0.15);
+            border-radius: 999px;
+            background: rgba(0, 200, 255, 0.04);
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.7rem, 4vw, 2.7rem);
+            font-weight: 400;
+            line-height: 1.25;
+            background: linear-gradient(135deg, #ffffff 30%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: .95rem;
+            color: var(--text-dim);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* ═══════════════════════════════════════════
+   FILTER BAR
+   ═══════════════════════════════════════════ */
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .pill {
+            font-family: 'DM Mono', monospace;
+            font-size: .78rem;
+            padding: 8px 20px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: rgba(10, 22, 40, 0.7);
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: all .25s ease;
+            user-select: none;
+            letter-spacing: .5px;
+        }
+
+        .pill:hover {
+            border-color: rgba(0, 200, 255, 0.3);
+            color: var(--text);
+            background: rgba(0, 200, 255, 0.06);
+        }
+
+        .pill.active {
+            color: #fff;
+            border-color: var(--cyan);
+            background: rgba(0, 200, 255, 0.12);
+            box-shadow: var(--glow-cyan), inset 0 0 14px rgba(0, 200, 255, 0.07);
+        }
+
+        /* ═══════════════════════════════════════════
+   TABLE WRAPPER
+   ═══════════════════════════════════════════ */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            box-shadow: 0 4px 60px rgba(0, 0, 0, 0.45), 0 0 80px rgba(0, 200, 255, 0.04);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 820px;
+        }
+
+        thead th {
+            font-family: 'DM Mono', monospace;
+            font-size: .72rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            background: rgba(0, 200, 255, 0.04);
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        thead th:first-child {
+            border-radius: var(--radius) 0 0 0;
+        }
+
+        thead th:last-child {
+            border-radius: 0 var(--radius) 0 0;
+        }
+
+        /* ═══════════════════════════════════════════
+   CATEGORY HEADER ROWS
+   ═══════════════════════════════════════════ */
+        .cat-row td {
+            background: var(--bg-cat);
+            padding: 14px 20px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: .95rem;
+            color: var(--mint);
+            letter-spacing: .5px;
+            border-bottom: 1px solid var(--border);
+            cursor: default;
+        }
+
+        .cat-row td .hex {
+            margin-right: 8px;
+            opacity: .6;
+        }
+
+        /* ═══════════════════════════════════════════
+   DATA ROWS
+   ═══════════════════════════════════════════ */
+        .data-row {
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+
+        .data-row:nth-child(even) td {
+            background: var(--bg-row-alt);
+        }
+
+        .data-row:nth-child(odd) td {
+            background: var(--bg-row);
+        }
+
+        .data-row:hover td {
+            background: rgba(0, 200, 255, 0.04) !important;
+            transform: translateX(2px);
+        }
+
+        .data-row td {
+            padding: 16px 20px;
+            font-size: .88rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+            transition: background .2s, transform .25s;
+        }
+
+        /* Category left band */
+        .data-row td:first-child {
+            border-left: 3px solid transparent;
+            font-weight: 600;
+        }
+
+        .data-row[data-cat="intrinsecos"] td:first-child {
+            border-left-color: var(--cyan);
+        }
+
+        .data-row[data-cat="temporales"] td:first-child {
+            border-left-color: var(--violet);
+        }
+
+        .data-row[data-cat="geometricos"] td:first-child {
+            border-left-color: var(--mint);
+        }
+
+        .data-row[data-cat="calidad"] td:first-child {
+            border-left-color: var(--yellow);
+        }
+
+        .data-row[data-cat="espacio-k"] td:first-child {
+            border-left-color: var(--coral);
+        }
+
+        .param-name {
+            display: block;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .param-abbr {
+            font-family: 'DM Mono', monospace;
+            font-size: .75rem;
+            color: var(--cyan);
+        }
+
+        /* expand arrow indicator */
+        .data-row td:last-child {
+            position: relative;
+        }
+
+        .data-row .arrow {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            text-align: center;
+            line-height: 18px;
+            font-size: .7rem;
+            color: var(--text-dim);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            transition: transform .3s, color .3s, border-color .3s;
+            float: right;
+            margin-top: 2px;
+        }
+
+        .data-row.open .arrow {
+            transform: rotate(180deg);
+            color: var(--cyan);
+            border-color: var(--cyan);
+        }
+
+        /* ═══════════════════════════════════════════
+   DETAIL ROWS (accordion)
+   ═══════════════════════════════════════════ */
+        .detail-row td {
+            padding: 0 20px;
+            background: rgba(0, 200, 255, 0.02);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .detail-inner {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .45s cubic-bezier(.22, 1, .36, 1), padding .35s ease;
+            padding: 0 0;
+        }
+
+        .detail-row.open .detail-inner {
+            max-height: 220px;
+            padding: 16px 0;
+        }
+
+        .detail-inner p {
+            font-size: .85rem;
+            color: var(--text-dim);
+            line-height: 1.65;
+            border-left: 3px solid var(--violet);
+            padding-left: 14px;
+        }
+
+        .detail-inner p em {
+            color: var(--cyan);
+            font-style: italic;
+        }
+
+        /* keyword highlights */
+        .kw-pos {
+            color: var(--mint);
+            font-weight: 600;
+        }
+
+        .kw-neg {
+            color: var(--orange);
+            font-weight: 600;
+        }
+
+        .kw-tech {
+            color: var(--cyan);
+            font-weight: 600;
+        }
+
+        /* ═══════════════════════════════════════════
+   NOTE BOX
+   ═══════════════════════════════════════════ */
+        .note-box {
+            margin-top: 36px;
+            padding: 28px 30px;
+            border: 1px solid rgba(123, 94, 167, 0.3);
+            border-radius: var(--radius);
+            background: rgba(123, 94, 167, 0.06);
+            box-shadow: var(--glow-violet);
+        }
+
+        .note-box h3 {
+            font-family: 'DM Mono', monospace;
+            font-size: .82rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--violet);
+            margin-bottom: 16px;
+        }
+
+        .note-box ul {
+            list-style: none;
+            margin-bottom: 18px;
+        }
+
+        .note-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: .88rem;
+        }
+
+        .note-box li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--violet);
+        }
+
+        .note-box li strong {
+            color: #fff;
+        }
+
+        .note-box code {
+            font-family: 'DM Mono', monospace;
+            font-size: .82rem;
+            background: rgba(0, 200, 255, 0.08);
+            padding: 2px 8px;
+            border-radius: 6px;
+            color: var(--cyan);
+        }
+
+        .note-quote {
+            border-left: 3px solid var(--violet);
+            padding: 12px 18px;
+            margin-top: 4px;
+            font-style: italic;
+            font-size: .85rem;
+            color: var(--text-dim);
+            background: rgba(123, 94, 167, 0.04);
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+        footer {
+            text-align: center;
+            padding: 32px 24px 20px;
+            font-size: .8rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: var(--cyan);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        footer a:hover {
+            color: var(--mint);
+        }
+
+        /* ═══════════════════════════════════════════
+   HIDDEN UTILITY
+   ═══════════════════════════════════════════ */
+        .hidden {
+            display: none !important;
+        }
+
+        /* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+        @media (max-width: 640px) {
+            .wrapper {
+                padding: 28px 10px 20px;
+            }
+
+            .filters {
+                gap: 6px;
+            }
+
+            .pill {
+                font-size: .7rem;
+                padding: 6px 14px;
+            }
+
+            .note-box {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <!-- ════════ HEADER ════════ -->
+        <header class="fade-up">
+            <span class="eyebrow">Guía técnica de diagnóstico por imagen</span>
+            <h1>Técnicas de Imagen por Resonancia Magnética – Tabla de Parámetros</h1>
+            <p class="subtitle">Referencia didáctica interactiva de los parámetros fundamentales que gobiernan el
+                contraste, la resolución y el tiempo de adquisición en RM.</p>
+        </header>
+
+        <!-- ════════ FILTERS ════════ -->
+        <nav class="filters fade-up fade-up-d1" aria-label="Filtros por categoría">
+            <button class="pill active" data-filter="todos">Todos</button>
+            <button class="pill" data-filter="intrinsecos">Intrínsecos</button>
+            <button class="pill" data-filter="temporales">Temporales</button>
+            <button class="pill" data-filter="geometricos">Geométricos</button>
+            <button class="pill" data-filter="calidad">Calidad y Tiempo</button>
+            <button class="pill" data-filter="espacio-k">Espacio K</button>
+        </nav>
+
+        <!-- ════════ TABLE ════════ -->
+        <div class="table-wrap fade-up fade-up-d2">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:22%">Categoría / Parámetro</th>
+                        <th style="width:30%">Definición y Función Didáctica</th>
+                        <th style="width:40%">Impacto en la Imagen y Relaciones</th>
+                        <th style="width:8%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- ───── INTRÍNSECOS ───── -->
+                    <tr class="cat-row" data-cat="intrinsecos">
+                        <td colspan="4"><span class="hex">⬡</span> Parámetros Intrínsecos</td>
+                    </tr>
+
+                    <!-- T1 -->
+                    <tr class="data-row" data-cat="intrinsecos">
+                        <td><span class="param-name">T1</span><span class="param-abbr">Relajación Longitudinal</span>
+                        </td>
+                        <td>Tiempo que tardan los protones en recuperar la magnetización en el eje Z.</td>
+                        <td><span class="kw-pos">Corto en grasa</span> (brilla), <span class="kw-neg">largo en
+                                agua</span> (oscura). Determina el <span class="kw-tech">contraste anatómico</span>.
+                        </td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="intrinsecos">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Truco clínico:</em> Los tejidos con T1 corto (grasa, sustancia blanca, gadolinio)
+                                    aparecen hiperintensos en secuencias ponderadas en T1. Ideal para evaluar anatomía,
+                                    realce con contraste y metahemoglobina.</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- T2 -->
+                    <tr class="data-row" data-cat="intrinsecos">
+                        <td><span class="param-name">T2</span><span class="param-abbr">Relajación Transversal</span>
+                        </td>
+                        <td>Tiempo en que los protones pierden la coherencia de fase en el plano XY.</td>
+                        <td><span class="kw-pos">Largo en agua</span> (brilla), <span class="kw-neg">corto en
+                                grasa</span> (oscura). Ideal para detectar <span class="kw-tech">patología/edema</span>.
+                        </td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="intrinsecos">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Truco clínico:</em> El agua libre y el edema brillan en T2. Muy útil para
+                                    detectar inflamación, tumores, derrames y lesiones desmielinizantes. Recuerda:
+                                    "Water is White in T2".</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- DP -->
+                    <tr class="data-row" data-cat="intrinsecos">
+                        <td><span class="param-name">Densidad Protónica</span><span class="param-abbr">DP</span></td>
+                        <td>Concentración de núcleos de hidrógeno por unidad de volumen de tejido.</td>
+                        <td>A mayor densidad, <span class="kw-pos">mayor señal bruta</span>. Ignora efectos T1/T2 para
+                            ver la <span class="kw-tech">estructura neta</span>.</td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="intrinsecos">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Truco clínico:</em> Las imágenes en DP se obtienen con TR largo y TE corto,
+                                    minimizando la influencia de T1 y T2. Son útiles para evaluar cartílago articular y
+                                    meniscos.</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- ───── TEMPORALES ───── -->
+                    <tr class="cat-row" data-cat="temporales">
+                        <td colspan="4"><span class="hex">⬡</span> Parámetros Temporales</td>
+                    </tr>
+
+                    <!-- TR -->
+                    <tr class="data-row" data-cat="temporales">
+                        <td><span class="param-name">TR</span><span class="param-abbr">Tiempo de Repetición</span></td>
+                        <td>Tiempo entre dos pulsos consecutivos de excitación de 90°.</td>
+                        <td><span class="kw-tech">TR Corto:</span> Potencia en T1. <span class="kw-tech">TR
+                                Largo:</span> Elimina el efecto T1, permitiendo ver <span class="kw-pos">T2 o DP</span>.
+                        </td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="temporales">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Relación técnica:</em> El TR controla cuánta recuperación T1 ocurre entre pulsos.
+                                    Un TR de ~500 ms potencia T1; un TR > 2000 ms permite diferencias T2. Además, el TR
+                                    total afecta directamente al tiempo de adquisición.</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- TE -->
+                    <tr class="data-row" data-cat="temporales">
+                        <td><span class="param-name">TE</span><span class="param-abbr">Tiempo de Eco</span></td>
+                        <td>Tiempo desde el pulso de excitación hasta la lectura de la señal (eco).</td>
+                        <td><span class="kw-tech">TE Corto:</span> Minimiza el efecto T2. <span class="kw-tech">TE
+                                Largo:</span> <span class="kw-pos">Potencia el contraste en T2</span>.</td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="temporales">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Relación técnica:</em> Un TE corto (~10–20 ms) conserva más señal; un TE largo
+                                    (~80–120 ms) amplifica las diferencias T2 entre tejidos. El TE mínimo depende del
+                                    ancho de banda de recepción.</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- TI -->
+                    <tr class="data-row" data-cat="temporales">
+                        <td><span class="param-name">TI</span><span class="param-abbr">Tiempo de Inversión</span></td>
+                        <td>Tiempo tras un pulso de 180° antes de iniciar la secuencia; anula tejidos específicos.</td>
+                        <td><span class="kw-tech">TI Corto (STIR):</span> <span class="kw-neg">Anula la grasa</span>.
+                            <span class="kw-tech">TI Largo (FLAIR):</span> <span class="kw-neg">Anula el agua
+                                libre</span> (LCR).</td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="temporales">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Truco clínico:</em> STIR (TI ≈ 150 ms a 1.5T) suprime grasa de forma robusta.
+                                    FLAIR (TI ≈ 2400 ms) suprime LCR, imprescindible para detectar lesiones
+                                    periventriculares en esclerosis múltiple.</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- ───── GEOMÉTRICOS ───── -->
+                    <tr class="cat-row" data-cat="geometricos">
+                        <td colspan="4"><span class="hex">⬡</span> Parámetros Geométricos</td>
+                    </tr>
+
+                    <!-- FOV -->
+                    <tr class="data-row" data-cat="geometricos">
+                        <td><span class="param-name">FOV</span><span class="param-abbr">Field of View</span></td>
+                        <td>Tamaño del área anatómica capturada.</td>
+                        <td>FOV pequeño <span class="kw-pos">aumenta la resolución</span> pero <span class="kw-neg">baja
+                                el SNR</span> y puede causar <span class="kw-neg">aliasing</span>.</td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="geometricos">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Truco clínico:</em> Si reduces el FOV a la mitad, el tamaño del píxel se reduce
+                                    ×4 y el SNR cae ×4. Para compensar, aumenta el NEX, el grosor de corte o reduce la
+                                    matriz.</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Matriz -->
+                    <tr class="data-row" data-cat="geometricos">
+                        <td><span class="param-name">Matriz</span><span class="param-abbr">Fase × Frecuencia</span></td>
+                        <td>Número de divisiones (píxeles) en los que se fragmenta el FOV.</td>
+                        <td>Matriz grande (ej. 512) da <span class="kw-pos">mucha nitidez</span>, pero requiere <span
+                                class="kw-neg">más tiempo</span> y tiene <span class="kw-neg">más ruido</span>.</td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="geometricos">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Relación técnica:</em> La dirección de fase es la que más influye en el tiempo
+                                    total. Duplicar los pasos de fase duplica el tiempo. La dirección de frecuencia no
+                                    afecta al tiempo pero sí al aliasing.</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Grosor de Corte -->
+                    <tr class="data-row" data-cat="geometricos">
+                        <td><span class="param-name">Grosor de Corte</span><span class="param-abbr">Espesor e
+                                Intervalo</span></td>
+                        <td>Espesor de la "loncha" anatómica y espacio entre ellas.</td>
+                        <td>Cortes finos <span class="kw-pos">mejoran la resolución espacial</span> (vóxel pequeño) pero
+                            <span class="kw-neg">disminuyen el SNR</span>.</td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="geometricos">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Truco clínico:</em> Un gap del 10-30 % entre cortes reduce el crosstalk. Para
+                                    estudios volumétricos (3D), se usan cortes contiguos o solapados que luego permiten
+                                    reformateos multiplanares.</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- ───── CALIDAD Y TIEMPO ───── -->
+                    <tr class="cat-row" data-cat="calidad">
+                        <td colspan="4"><span class="hex">⬡</span> Calidad y Tiempo</td>
+                    </tr>
+
+                    <!-- NEX -->
+                    <tr class="data-row" data-cat="calidad">
+                        <td><span class="param-name">NEX / NSA</span><span class="param-abbr">Excitaciones</span></td>
+                        <td>Número de veces que se repite el llenado de cada línea del Espacio K.</td>
+                        <td>A mayor NEX, <span class="kw-pos">mayor SNR</span> (imagen más limpia), pero el <span
+                                class="kw-neg">tiempo sube linealmente</span>.</td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="calidad">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Relación técnica:</em> El SNR aumenta proporcionalmente a la raíz cuadrada del
+                                    NEX. Duplicar el NEX solo mejora el SNR un 41 %, pero duplica el tiempo. Es la
+                                    variable de "compromiso rápido".</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Bandwidth -->
+                    <tr class="data-row" data-cat="calidad">
+                        <td><span class="param-name">Ancho de Banda</span><span class="param-abbr">Bandwidth</span></td>
+                        <td>Rango de frecuencias que el equipo recibe durante la lectura.</td>
+                        <td><span class="kw-tech">Estrecho:</span> <span class="kw-pos">Mejora SNR</span> pero <span
+                                class="kw-neg">aumenta desplazamiento químico</span> y el TE mínimo.</td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="calidad">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Relación técnica:</em> Un BW ancho reduce el desplazamiento químico y permite TEs
+                                    más cortos, a costa de más ruido. Se usa BW ancho en secuencias rápidas (EPI) y BW
+                                    estrecho en estudios de alta resolución.</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Flip Angle -->
+                    <tr class="data-row" data-cat="calidad">
+                        <td><span class="param-name">Flip Angle</span><span class="param-abbr">Ángulo de
+                                Inclinación</span></td>
+                        <td>Ángulo de deflexión del vector de magnetización neta tras el pulso de RF.</td>
+                        <td>Crucial en secuencias <span class="kw-tech">GRE</span>: influye en la saturación y el
+                            contraste <span class="kw-tech">T1/T2*</span>.</td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="calidad">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Truco clínico:</em> Ángulos altos (~70–90°) potencian T1 en GRE. Ángulos bajos
+                                    (~5–20°) potencian T2*/DP. El ángulo de Ernst maximiza el SNR para un TR dado:
+                                    cos(α) = e^(-TR/T1).</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- ───── ESPACIO K ───── -->
+                    <tr class="cat-row" data-cat="espacio-k">
+                        <td colspan="4"><span class="hex">⬡</span> Espacio K</td>
+                    </tr>
+
+                    <!-- Codificación -->
+                    <tr class="data-row" data-cat="espacio-k">
+                        <td><span class="param-name">Codificación de Fase y Frecuencia</span><span
+                                class="param-abbr">Gradientes de Localización</span></td>
+                        <td>Uso de gradientes para localizar la señal en los ejes X e Y.</td>
+                        <td>El número de <span class="kw-tech">pasos de fase</span> determina directamente el <span
+                                class="kw-neg">tiempo de la secuencia</span>.</td>
+                        <td><span class="arrow">▼</span></td>
+                    </tr>
+                    <tr class="detail-row" data-cat="espacio-k">
+                        <td colspan="4">
+                            <div class="detail-inner">
+                                <p><em>Relación técnica:</em> El centro del Espacio K contiene la información de
+                                    contraste y las líneas periféricas contienen el detalle fino. Técnicas como llenado
+                                    parcial, GRAPPA o SENSE reducen los pasos de fase necesarios.</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ════════ NOTE BOX ════════ -->
+        <div class="note-box fade-up fade-up-d3">
+            <h3>Nota Técnica — Triángulo de Compromiso</h3>
+            <ul>
+                <li><strong>El Contraste:</strong> Se domina principalmente con el <strong>TR</strong> y el
+                    <strong>TE</strong>.</li>
+                <li><strong>La Resolución:</strong> La dictan el <strong>FOV</strong> y la <strong>Matriz</strong>.</li>
+                <li><strong>El Tiempo:</strong> Es el resultado de: <code>TR × Matriz de fase × NEX</code></li>
+            </ul>
+            <div class="note-quote">"Si un paciente tiene dolor y no aguanta mucho tiempo en el gantry, tendrás que
+                bajar el NEX o el TR, pero sabiendo que tu imagen tendrá más ruido (menos SNR)."</div>
+        </div>
+
+        <!-- ════════ FOOTER ════════ -->
+        <footer>
+            Realizado por V. López (<a href="https://sanidadedtech.es/" target="_blank"
+                rel="noopener">@sanidadedtech</a>)
+        </footer>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════ -->
+    <script>
+        (() => {
+            'use strict';
+
+            /* ────── FILTER PILLS ────── */
+            const pills = document.querySelectorAll('.pill');
+            const catRows = document.querySelectorAll('.cat-row');
+            const dataRows = document.querySelectorAll('.data-row');
+            const detailRows = document.querySelectorAll('.detail-row');
+
+            pills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    // Update active state
+                    pills.forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+
+                    const filter = pill.dataset.filter;
+
+                    if (filter === 'todos') {
+                        catRows.forEach(r => r.classList.remove('hidden'));
+                        dataRows.forEach(r => r.classList.remove('hidden'));
+                        detailRows.forEach(r => r.classList.remove('hidden'));
+                    } else {
+                        catRows.forEach(r => {
+                            r.classList.toggle('hidden', r.dataset.cat !== filter);
+                        });
+                        dataRows.forEach(r => {
+                            r.classList.toggle('hidden', r.dataset.cat !== filter);
+                        });
+                        detailRows.forEach(r => {
+                            r.classList.toggle('hidden', r.dataset.cat !== filter);
+                        });
+                    }
+                });
+            });
+
+            /* ────── ACCORDION ────── */
+            dataRows.forEach(row => {
+                row.addEventListener('click', () => {
+                    const detail = row.nextElementSibling;
+                    if (!detail || !detail.classList.contains('detail-row')) return;
+
+                    const isOpen = row.classList.contains('open');
+
+                    // Close all others
+                    dataRows.forEach(r => r.classList.remove('open'));
+                    detailRows.forEach(r => r.classList.remove('open'));
+
+                    // Toggle current
+                    if (!isOpen) {
+                        row.classList.add('open');
+                        detail.classList.add('open');
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>
