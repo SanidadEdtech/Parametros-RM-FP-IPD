@@ -1,0 +1,5 @@
+/* Tipografías servidas localmente (licencia SIL OFL / Apache, ver LICENSE-*.txt) */
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url('dm-mono-latin-400-normal.woff2') format('woff2')}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:500;font-display:swap;src:url('dm-mono-latin-500-normal.woff2') format('woff2')}
+@font-face{font-family:'DM Serif Display';font-style:normal;font-weight:400;font-display:swap;src:url('dm-serif-display-latin-400-normal.woff2') format('woff2')}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:100 900;font-display:swap;src:url('outfit-latin-wght-normal.woff2') format('woff2')}
